@@ -4,6 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="box">
+
+      <h1>Password Generator</h1>
+
+      <div id="suggestions">
+
+        <input readonly class="passwordDisplay" placeholder="suggestions" passwordDisplay/> 
+        
+        <button data-copy>
+          <span data-copyMsg></span>
+          <img id="clipboard-icon" src="Assests\copy.png" alt="clipboard-icon"/>
+        </button>
+
+      </div>
+      
+      <div id="input-container">
+
+        <!-- Password length section -->
+        <div class="length-container">
+          <p>Password length</p>
+          <p data-lengthNmber>0</p>
+        </div>
+      
+        <!-- SLider -->
+        <input type="range" min="1" max="20" step="1" class="slider" />
+      
+        <!-- checkboxes -->
+        <div id="checkbox">
+          <input type="checkbox" id="uppercase" value=""/><label for="uppercase">Include Uppercase</label><br/>
+          <input type="checkbox" id="lowercase" value=""/><label for="lowercase">Include Lowercase</label><br/>
+          <input type="checkbox" id="numbers" value=""/><label for="numbers">Include Numbers</label><br/>
+          <input type="checkbox" id="symbols" value=""/><label for="symbols">Include Symbols</label>
+        </div>
+
+      </div>
+
+      <div class="strength-container">
+        <p>Strength</p>
+        <div id="light"></div>
+      </div>
+      <button class="generate-button">Generate Password</button>
+    </div>
+  </body>
 </html>
