@@ -15,17 +15,19 @@ const symbolsCheck = document.querySelector('#symbols');
 
 const indicator = document.querySelector('#light');
 const generateBtn = document.querySelector('.generate-button');
-const allCheckBox = document.querySelector('input[type=checkbox]');
+const allCheckBox = document.querySelectorAll('input[type=checkbox]');
 const symbols = '!@#$%^&*()-_=+[]{}|;:,.<>?/~`".';
 
 //default password length-10, slider value=10, indicator-color= grey
 let checkCount=0;
 let password="";
-let passwordLength = parseInt(lengthDisplay.textContent);
+let passwordLength=10; 
 
 
 inputSlider.addEventListener('input', function (e) {
   lengthDisplay.textContent = e.target.value;
+  passwordLength=parseInt(lengthDisplay.textContent);
+  console.log(passwordLength);
 });
 
 //copy to clipboard, msg-"copied"
@@ -47,10 +49,16 @@ copyBtn.addEventListener('click', function () {
 
 function setIndicator(color) {
   indicator.style.backgroundColor = color;
-  //shadow
-  // if(color=="red"){ //FIXME
-  //     indicator.style.boxShadow="0 0 10px rgba(73, 14, 14, 0.5)";
-  // }
+  // shadow
+  if(color=="#f20"){ 
+      indicator.style.boxShadow="0 0 12px 1px rgb(174, 15, 15)";
+  }
+  if(color=="#ff0"){ 
+    indicator.style.boxShadow=" 0 0 12px 1px rgb(178, 181, 0);";
+ }
+  if(color=="#0f0"){ 
+    indicator.style.boxShadow="0 0 12px 1px rgb(8, 174, 2)";
+  }
 }
 
 function getRandomInteger(min, max) {
@@ -109,9 +117,9 @@ function shufflePassword(array){
   //Fissher Yates Method
   for (let i = array.length-1; i >0; i--) {
     let j =Math.floor(Math.random()*(i+1));
-    let temp =arr[i];
-    arr[i]=arr[j];
-    arr[j]=temp;
+    let temp =array[i];
+    array[i]=array[j];
+    array[j]=temp;
   }
   let str="";
   array.forEach((el)=> str+=el);
@@ -169,13 +177,13 @@ generateBtn.addEventListener('click', function () {
     }
 
     //remaining additions
-    for (let i = 0; i < password.length-funcArr.length; i++) {
+    for (let i = 0; i < passwordLength-funcArr.length; i++) {
       let rndmIndx = getRandomInteger(0 , funcArr.length);
       password+=funcArr[rndmIndx]();
     }
     
     //shuffle the password
-    password= shufflePassword(Arrays.from(password));
+    password= shufflePassword(Array.from(password));
 
     //show in UI
     passwordDisplay.value=password;
@@ -183,6 +191,5 @@ generateBtn.addEventListener('click', function () {
     //calc strength
     calcPassStrength();
 
-
-
+console.log(passwordLength);
 })
