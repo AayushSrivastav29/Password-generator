@@ -45,6 +45,8 @@ copyBtn.addEventListener('click', function () {
 
   passwordDisplay.select();
   navigator.clipboard.writeText(passwordDisplay.value);
+
+  inputSlider.style.backgroundSize = ((passwordLength-min)*100/(max-min))+"% 100%";
 });
 
 function setIndicator(color) {
@@ -127,6 +129,7 @@ function shufflePassword(array){
 }
 
 function handleCheckboxChange(){
+    checkCount=0;
     allCheckBox.forEach((checkbox)=>{
       if(checkbox.checked){
         checkCount++;
@@ -135,7 +138,11 @@ function handleCheckboxChange(){
 
     //edge case
     if (passwordLength < checkCount) {
-      passwordLength =checkCount;
+      passwordLength = checkCount;
+      inputSlider.value = passwordLength;
+      lengthDisplay.innerText = passwordLength;
+
+
     }
 }
 
